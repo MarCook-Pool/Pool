@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    
+
     FragmentManager mFragmentManager = getSupportFragmentManager();
     TableLocationsFragment mTableLocationsFragment = new TableLocationsFragment();
 

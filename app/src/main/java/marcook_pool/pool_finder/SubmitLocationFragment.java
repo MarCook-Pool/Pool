@@ -11,10 +11,10 @@ import android.view.ViewGroup;
  * Created by Carson on 17/09/2016.
  */
 
-public class TableLocationsFragment extends Fragment {
+public class SubmitLocationFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_table_locations, container, false);
+        return inflater.inflate(R.layout.fragment_submit_locations, container, false);
     }
 }

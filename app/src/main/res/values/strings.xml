@@ -6,5 +6,8 @@
     <string name="settings_item">Settings</string>
     <string name="review_app_item">Review App</string>
 
-    <string name="test_string">Fuck Yeah!</string>
+    <!--tab items-->
+    <string name="table_locations_tab">Table Locations</string>
+    <string name="submit_tables_tab">Submit a Table Location</string>
+
 </resources>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Pool-Finder</string>
 
-    <!--menu items-->
+    <!--options git menu items-->
     <string name="search_item">Search</string>
     <string name="settings_item">Settings</string>
     <string name="review_app_item">Review App</string>
@@ -9,5 +9,13 @@
     <!--tab items-->
     <string name="table_locations_tab">Table Locations</string>
     <string name="submit_tables_tab">Submit a Table Location</string>
+
+    <!-- activity_login UI Strings -->
+    <string name="email_login_hint">Email</string>
+    <string name="password_login_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="skip_login_button">Skip Login</string>
+    <string name="confirm_pass">Confirm Password</string>
+    <string name="create_button">Create</string>
 
 </resources>

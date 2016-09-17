@@ -7,19 +7,29 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.content.Intent;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     private final String TABLE_LOCATIONS = "table_locations";
     private final String SUBMIT_LOCATION = "submit_location";
+    private final String TAG = "MainActivity";
+
+    private boolean mDoneLogin = false;
 
     PoolLocationsFragment mPoolLocationsFragment = new PoolLocationsFragment();
     SubmitLocationFragment mSubmitLocationFragment = new SubmitLocationFragment();
-    FragmentPagerSupport mFragmentPagerSupport = new FragmentPagerSupport();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mDoneLogin = getIntent().getBooleanExtra(LoginActivity.DONE_LOGIN, false);
+        if (!mDoneLogin) {
+            Log.d(TAG, "" + mDoneLogin);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            this.startActivity(intent);
+        }
         makeTabs();
     }
 
@@ -41,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-                // hide the given tab
+                //ignore this event
             }
 
             public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-                // probably ignore this event
+                //ignore this event
             }
         };
 

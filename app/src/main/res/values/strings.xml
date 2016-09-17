@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Pool-Finder</string>
 
+    <!--menu items-->
+    <string name="search_item">Search</string>
+    <string name="settings_item">Settings</string>
+    <string name="review_app_item">Review App</string>
+
     <string name="test_string">Fuck Yeah!</string>
 </resources>

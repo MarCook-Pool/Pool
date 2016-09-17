@@ -8,6 +8,8 @@ import android.util.Log;
 public class MainActivity extends AppCompatActivity {
     boolean doneLogin = false;
 
+    //TODO: Remember if logged in in preferences
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

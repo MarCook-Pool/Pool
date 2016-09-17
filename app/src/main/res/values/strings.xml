@@ -1,7 +1,14 @@
 <resources>
     <string name="app_name">Pool-Finder</string>
 
-    <string name="test_string">Fuck Yeah!</string>
+    <!--options git menu items-->
+    <string name="search_item">Search</string>
+    <string name="settings_item">Settings</string>
+    <string name="review_app_item">Review App</string>
+
+    <!--tab items-->
+    <string name="table_locations_tab">Table Locations</string>
+    <string name="submit_tables_tab">Submit a Table Location</string>
 
     <!-- activity_login UI Strings -->
     <string name="email_login_hint">Email</string>

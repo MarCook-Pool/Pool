@@ -79,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 //TODO: search for pool table locations
                 return true;
             case R.id.settings:
-                //TODO: start settings activity
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                this.startActivity(intent);
                 return true;
             case R.id.review_app:
                 //TODO: send to play store or some review process

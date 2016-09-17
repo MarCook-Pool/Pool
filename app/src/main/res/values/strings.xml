@@ -18,4 +18,9 @@
     <string name="confirm_pass">Confirm Password</string>
     <string name="create_button">Create</string>
 
+    <!--settings menu items-->
+    <string name="filter">Filter Tables</string>
+    <string name="sort">Sort Tables</string>
+    <string name="manage_private_locations">Manage private locations</string>
+
 </resources>

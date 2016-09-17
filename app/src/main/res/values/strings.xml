@@ -2,4 +2,13 @@
     <string name="app_name">Pool-Finder</string>
 
     <string name="test_string">Fuck Yeah!</string>
+
+    <!-- activity_login UI Strings -->
+    <string name="email_login_hint">Email</string>
+    <string name="password_login_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="skip_login_button">Skip Login</string>
+    <string name="confirm_pass">Confirm Password</string>
+    <string name="create_button">Create</string>
+
 </resources>

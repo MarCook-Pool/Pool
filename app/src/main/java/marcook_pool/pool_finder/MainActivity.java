@@ -9,8 +9,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button testButton = (Button) findViewById(R.id.test_button);
-    TextView testText = (TextView) findViewById(R.id.textView);
+
 
     FragmentManager mFragmentManager = getSupportFragmentManager();
     TableLocationsFragment mTableLocationsFragment = new TableLocationsFragment();
@@ -19,9 +18,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button testButton = (Button) findViewById(R.id.test_button);
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TextView testText = (TextView) findViewById(R.id.textView);
                 testText.setText(getString(R.string.test_string));
                 mFragmentManager.beginTransaction().replace(R.id.activity_main, mTableLocationsFragment).commit();
 

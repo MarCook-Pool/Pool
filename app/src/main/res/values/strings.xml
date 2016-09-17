@@ -17,6 +17,11 @@
     <string name="skip_login_button">Skip Login</string>
     <string name="confirm_pass">Confirm Password</string>
     <string name="create_button">Create</string>
+    <string name="back_button">Back</string>
+    <string name="empty_email">*Email address cannot be left empty</string>
+    <string name="empty_password">*Password cannot be left empty</string>
+    <string name="short_password">*Password must be at least 8 characters</string>
+    <string name="no_password_match">*Passwords do not match</string>
 
     <!--settings menu items-->
     <string name="filter">Filter Tables</string>

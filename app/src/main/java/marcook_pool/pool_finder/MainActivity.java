@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     PoolLocationsFragment mPoolLocationsFragment = new PoolLocationsFragment();
     SubmitLocationFragment mSubmitLocationFragment = new SubmitLocationFragment();
 
+    //TODO: Remember if logged in in preferences
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

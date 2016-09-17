@@ -10,7 +10,7 @@
         android:id="@+id/emailLogin"
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="290dp"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:layout_weight="0.03"
@@ -23,7 +23,7 @@
         android:id="@+id/passLogin"
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="290dp"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_weight="0.03"
@@ -36,7 +36,7 @@
         android:id="@+id/confirmPass"
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="290dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_weight="0.03"
@@ -46,8 +46,18 @@
         android:visibility="gone"
         android:paddingLeft="10dp" />
 
+    <TextView
+        android:text=""
+        android:visibility="gone"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center"
+        android:id="@+id/errorMessage"
+        android:layout_weight="0.03" />
+
     <RelativeLayout
-        android:layout_width="299dp"
+        android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp">
@@ -55,14 +65,14 @@
         <Button
             android:id="@+id/createButton"
             android:layout_width="90dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:text="@string/create_button" />
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="90dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:textAllCaps="false"
             android:text="@string/login_button" />
@@ -70,11 +80,19 @@
 
     <Button
         android:id="@+id/skipLoginButton"
-        android:layout_width="299dp"
-        android:layout_height="45dp"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:textAllCaps="false"
         android:text="@string/skip_login_button" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp" />
+
 
 </LinearLayout>

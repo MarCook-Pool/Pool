@@ -19,13 +19,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static String KEY_SORT_PREF = "sort_pref";
     public static String KEY_FILTER_PREF = "filter_pref";
+    public static String KEY_LOGGED_IN = "logged_in?";
 
     private final String TABLE_LOCATIONS = "table_locations";
     private final String SUBMIT_LOCATION = "submit_location";
 
     public static GoogleSignInAccount ACCOUNT = null;
 
-    private boolean mDoneLogin = false;
+    private boolean mLoggedIn = false;
 
     SharedPreferences mPrefs;
     PoolLocationsFragment mPoolLocationsFragment = new PoolLocationsFragment();
@@ -36,16 +37,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
+        mLoggedIn = getIntent().getBooleanExtra(LoginActivity.KEY_DONE_LOGIN, false);
         mPrefs = getPreferences(Context.MODE_PRIVATE); //TODO: for remembering login
 
-        mDoneLogin = getIntent().getBooleanExtra(LoginActivity.DONE_LOGIN, false);
         if (ACCOUNT == null) {
-            Log.d(TAG, "" + mDoneLogin);
+            Log.d(TAG, "" + mLoggedIn);
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             this.startActivity(intent);
+            //TODO: finish here then have onactivityforresult from login activity, where mLoggedIn is set and maketabs called, have else with this if to call maketabs
         }
         makeTabs();
     }
@@ -104,5 +105,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPrefs.edit().putBoolean(KEY_LOGGED_IN, mLoggedIn).apply();
     }
 }

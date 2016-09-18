@@ -56,7 +56,8 @@ public class LoginActivity extends AppCompatActivity implements
                 .build();
 
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        //MainActivity.ACCOUNT = Auth.GoogleSignInApi.getSignInResultFromIntent(signInIntent).getSignInAccount();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+
         if (MainActivity.ACCOUNT != null)
             finish(); //TODO: change to start main activity for result, then finish
 

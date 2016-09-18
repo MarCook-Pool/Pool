@@ -25,6 +25,7 @@ import java.util.Vector;
  */
 
 public class PoolLocationsFragment extends Fragment {
+    //TODO: use sharedprefs to get how to sort tables
     private DatabaseReference mDatabase;
     private static final String TAG = "PoolLocationsFragment";
 

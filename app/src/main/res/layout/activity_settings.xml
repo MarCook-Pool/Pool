@@ -6,16 +6,19 @@
 
     <Button
         style="@style/ButtonStyle"
+        android:id="@+id/filter"
         android:layout_width="match_parent"
         android:text="@string/filter"/>
 
     <Button
         style="@style/ButtonStyle"
+        android:id="@+id/sort"
         android:layout_width="match_parent"
         android:text="@string/sort"/>
 
     <Button
         style="@style/ButtonStyle"
+        android:id="@+id/manage_privates"
         android:layout_width="match_parent"
         android:text="@string/manage_private_locations"/>
 

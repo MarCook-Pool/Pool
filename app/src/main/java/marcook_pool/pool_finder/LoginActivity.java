@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity implements
 
     private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 9001;
-    public static String DONE_LOGIN = "doneLogin";
+    public static String KEY_DONE_LOGIN = "doneLogin";
     private GoogleApiClient mGoogleApiClient;
 
     Button mCreateAcc;
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements
         startActivityForResult(signInIntent, RC_SIGN_IN);
 
         if (MainActivity.ACCOUNT != null)
-            finish();
+            finish(); //TODO: change to start main activity for result, then finish
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements
                     }
                     if (isGood)
                     {
-                        //TODO: LOGIN TO ACCOUNT
+                        //TODO: LOGIN TO ACCOUNT, will send intent using KEY_DONE_LOGIN key
                         finish();
                     }
                     else
@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity implements
                     }
                     if (isGood)
                     {
-                        //TODO: LOGIN TO ACCOUNT
+                        //TODO: LOGIN TO ACCOUNT, send intent using KEY_DONE_LOGIN
                         finish();
                     }
                     else

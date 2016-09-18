@@ -31,12 +31,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         holder.mEstablishment.setText(poolTable.get(position).getEstablishment());
+        holder.mDescription.setText(poolTable.get(position).getDescription());
         //holder.mDistance.setText(personList.get(position).getLocation());
         // holder.mRatingBar.setNumStars(poolTable.get(position).getRating());
     }
 
     @Override
     public int getItemCount() {
-        return poolTable.size();
+        return this.poolTable.size();
     }
 }

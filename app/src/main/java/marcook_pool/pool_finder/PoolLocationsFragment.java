@@ -49,13 +49,13 @@ public class PoolLocationsFragment extends Fragment {
         mDatabase.child("Tables").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                List<PoolTable> list = new ArrayList<PoolTable>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     PoolTable curTable = snapshot.getValue(PoolTable.class);
                     if (curTable == null) {
                         // User is null, error out
                         Log.e(TAG, "Pool table is unexpectedly null");
                     } else {
-                        List<PoolTable> list = new ArrayList<PoolTable>();
                         list.add(curTable);
                         mAdapter = new RecyclerViewAdapter(list, getContext());
                         mRecyclerView.setAdapter(mAdapter);

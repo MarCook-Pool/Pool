@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{ //class for each person's info
     public TextView mEstablishment;
+    public TextView mDescription;
     public TextView mDistance;
     public RatingBar mRatingBar;
 
@@ -18,6 +19,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
         super(itemView);
         itemView.setOnClickListener(this);
         mEstablishment = (TextView) itemView.findViewById(R.id.establishment);
+        mDescription = (TextView) itemView.findViewById(R.id.description);
       //  mDistance = (TextView) itemView.findViewById(R.id.distance);
       //  mRatingBar = (RatingBar) itemView.findViewById(R.id.rating_bar);
     }

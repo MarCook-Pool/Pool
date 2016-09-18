@@ -33,6 +33,10 @@ public class PoolTable {
         return establishment;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public String getLocation() {
         return location;
     }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="filter_choices">
+        <item>@string/best</item>
+        <item>@string/rating</item>
+        <item>@string/distance</item>
+        <item>@string/none</item>
+    </array>
+
+    <array name="sort_choices">
+        <item>@string/best</item>
+        <item>@string/rating</item>
+        <item>@string/distance</item>
+    </array>
+
+</resources>

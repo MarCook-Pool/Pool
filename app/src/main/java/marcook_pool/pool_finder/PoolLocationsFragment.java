@@ -12,6 +12,9 @@ import android.view.ViewGroup;
  */
 
 public class PoolLocationsFragment extends Fragment {
+
+    //TODO: use sharedprefs to get how to sort tables
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

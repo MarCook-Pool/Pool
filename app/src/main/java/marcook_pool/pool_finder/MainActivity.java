@@ -1,5 +1,7 @@
 package marcook_pool.pool_finder;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -11,17 +13,22 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
+    private final String TAG = "MainActivity";
+
+    public static String KEY_SORT_PREF = "sort_pref";
+    public static String KEY_FILTER_PREF = "filter_pref";
+    public static String KEY_LOGGED_IN = "logged_in?";
+
     private final String TABLE_LOCATIONS = "table_locations";
     private final String SUBMIT_LOCATION = "submit_location";
-    private final String TAG = "MainActivity";
+
     public static GoogleSignInAccount ACCOUNT = null;
 
-    private boolean mDoneLogin = false;
+    private boolean mLoggedIn = false;
 
+    SharedPreferences mPrefs;
     PoolLocationsFragment mPoolLocationsFragment = new PoolLocationsFragment();
     SubmitLocationFragment mSubmitLocationFragment = new SubmitLocationFragment();
 
@@ -30,14 +37,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
-        mDoneLogin = getIntent().getBooleanExtra(LoginActivity.DONE_LOGIN, false);
+        mLoggedIn = getIntent().getBooleanExtra(LoginActivity.KEY_DONE_LOGIN, false);
+        mPrefs = getPreferences(Context.MODE_PRIVATE); //TODO: for remembering login
+
         if (ACCOUNT == null) {
-            Log.d(TAG, "" + mDoneLogin);
+            Log.d(TAG, "" + mLoggedIn);
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             this.startActivity(intent);
+            //TODO: finish here then have onactivityforresult from login activity, where mLoggedIn is set and maketabs called, have else with this if to call maketabs
         }
         makeTabs();
     }
@@ -96,5 +105,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPrefs.edit().putBoolean(KEY_LOGGED_IN, mLoggedIn).apply();
     }
 }

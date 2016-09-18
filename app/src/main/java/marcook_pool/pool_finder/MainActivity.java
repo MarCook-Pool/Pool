@@ -10,10 +10,13 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.util.Log;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 public class MainActivity extends AppCompatActivity {
     private final String TABLE_LOCATIONS = "table_locations";
     private final String SUBMIT_LOCATION = "submit_location";
     private final String TAG = "MainActivity";
+    public static GoogleSignInAccount ACCOUNT = null;
 
     private boolean mDoneLogin = false;
 
@@ -25,9 +28,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         mDoneLogin = getIntent().getBooleanExtra(LoginActivity.DONE_LOGIN, false);
-        if (!mDoneLogin) {
+        if (ACCOUNT == null) {
             Log.d(TAG, "" + mDoneLogin);
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             this.startActivity(intent);

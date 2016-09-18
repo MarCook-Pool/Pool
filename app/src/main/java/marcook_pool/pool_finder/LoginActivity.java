@@ -15,8 +15,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
@@ -56,6 +54,11 @@ public class LoginActivity extends AppCompatActivity implements
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        //MainActivity.ACCOUNT = Auth.GoogleSignInApi.getSignInResultFromIntent(signInIntent).getSignInAccount();
+        if (MainActivity.ACCOUNT != null)
+            finish();
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,7 +154,6 @@ public class LoginActivity extends AppCompatActivity implements
 
     @Override
     public void onBackPressed() {
-        signOut();
         if (mIsCreating)
         {
             mErrorMessage.setText("");
@@ -179,17 +181,8 @@ public class LoginActivity extends AppCompatActivity implements
             handleSignInResult(result);
             if (result.isSuccess())
                 finish();
+            MainActivity.ACCOUNT = result.getSignInAccount();
         }
-    }
-
-    private void signOut() {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(Status status) {
-                        // ...
-                    }
-                });
     }
 
     private void handleSignInResult(GoogleSignInResult result) {

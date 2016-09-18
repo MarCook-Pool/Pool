@@ -27,5 +27,7 @@
     <string name="filter">Filter Tables</string>
     <string name="sort">Sort Tables</string>
     <string name="manage_private_locations">Manage private locations</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_out">Sign out</string>
 
 </resources>

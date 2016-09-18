@@ -5,16 +5,19 @@
               android:orientation="vertical">
 
     <Button
+        android:id="@+id/filter"
         style="@style/ButtonTheme"
         android:layout_width="match_parent"
         android:text="@string/filter"/>
 
     <Button
+        android:id="@+id/sort"
         style="@style/ButtonTheme"
         android:layout_width="match_parent"
         android:text="@string/sort"/>
 
     <Button
+        android:id="@+id/manage_privates"
         style="@style/ButtonTheme"
         android:layout_width="match_parent"
         android:text="@string/manage_private_locations"/>

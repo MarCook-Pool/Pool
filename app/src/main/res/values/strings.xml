@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Pool-Finder</string>
 
-    <!--options git menu items-->
+    <!--options menu items-->
     <string name="search_item">Search</string>
     <string name="settings_item">Settings</string>
     <string name="review_app_item">Review App</string>
@@ -22,5 +22,13 @@
     <string name="filter">Filter Tables</string>
     <string name="sort">Sort Tables</string>
     <string name="manage_private_locations">Manage private locations</string>
+
+    <!--dialogs-->
+    <string name="filter_results">Filter tables by:</string>
+    <string name="best">Best pool tables near by</string>
+    <string name="rating">Best ratings</string>
+    <string name="distance">Closest to me</string>
+    <string name="sort_results">Sort tables by:</string>
+    <string name="none">None</string>
 
 </resources>

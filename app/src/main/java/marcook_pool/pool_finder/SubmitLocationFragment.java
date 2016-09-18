@@ -60,18 +60,30 @@ public class SubmitLocationFragment extends Fragment {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PoolTable curTable = new PoolTable();
-                curTable.ID = 0;
-                curTable.description = mDescription.getText().toString();
-                curTable.establishment = mEstablishment.getText().toString();
-                curTable.rating = mRating.getNumStars();
-                curTable.photoURL = "";
+                if (MainActivity.ACCOUNT == null)
+                {
+                    Toast.makeText(getContext(), getString(R.string.must_log_in), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
+                    PoolTable curTable = new PoolTable();
+                    curTable.ID = 0;
+                    curTable.description = mDescription.getText().toString();
+                    if (mEstablishment.getText().toString().isEmpty() || mRating.getRating() < 1)
+                    {
+                        Toast.makeText(getContext(), getString(R.string.invalid_entry), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    curTable.establishment = mEstablishment.getText().toString();
+                    curTable.rating = mRating.getNumStars();
+                    curTable.photoURL = "";
 
-                mDatabase.child("Tables").child(curTable.establishment).setValue(curTable);
-                Toast.makeText(getContext(), getString(R.string.submitted_table), Toast.LENGTH_SHORT).show();
-                mDescription.setText("");
-                mEstablishment.setText("");
-                mRating.setRating(0);
+                    mDatabase.child("Tables").child(curTable.establishment).setValue(curTable);
+                    Toast.makeText(getContext(), getString(R.string.submitted_table), Toast.LENGTH_SHORT).show();
+                    mDescription.setText("");
+                    mEstablishment.setText("");
+                    mRating.setRating(0);
+                }
             }
         });
     }

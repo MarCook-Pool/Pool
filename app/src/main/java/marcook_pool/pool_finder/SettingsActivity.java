@@ -40,6 +40,37 @@ public class SettingsActivity extends AppCompatActivity implements
         mPrefs = getPreferences(Context.MODE_PRIVATE);
         setViews();
         setClickListeners();
+
+        mSignInOrOut = (Button) findViewById(R.id.signInButton);
+
+        // Enable google sign in
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        mIsSignedIn = (MainActivity.ACCOUNT != null);
+        if (mIsSignedIn)
+        {
+            mSignInOrOut.setText(getText(R.string.sign_out));
+        }
+
+        mSignInOrOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mIsSignedIn) {
+                    signOut();
+                    mIsSignedIn = false;
+                    MainActivity.ACCOUNT = null;
+                    mSignInOrOut.setText(getText(R.string.sign_in));
+                } else {
+                    Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
     }
 
     private void setViews() {
@@ -77,37 +108,6 @@ public class SettingsActivity extends AppCompatActivity implements
             }
         });
         builder.create().show();
-
-        mSignInOrOut = (Button) findViewById(R.id.signInButton);
-
-        // Enable google sign in
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-        mIsSignedIn = MainActivity.ACCOUNT != null;
-        if (mIsSignedIn) {
-            mSignInOrOut.setText(getText(R.string.sign_out));
-        }
-
-        mSignInOrOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mIsSignedIn) {
-                    signOut();
-                    mIsSignedIn = false;
-                    MainActivity.ACCOUNT = null;
-                    mSignInOrOut.setText(getText(R.string.sign_in));
-                } else {
-                    Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
-
     }
 
     @Override

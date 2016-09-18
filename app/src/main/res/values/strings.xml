@@ -53,4 +53,6 @@
 
     <!-- database-->
     <string name="submitted_table">Submitted Pool Table</string>
+    <string name="must_log_in">You must be logged in to submit a pool table</string>
+    <string name="invalid_entry">Error submitting table. Invalid entry</string>
 </resources>

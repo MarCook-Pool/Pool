@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     private final String TABLE_LOCATIONS = "table_locations";
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
         mDoneLogin = getIntent().getBooleanExtra(LoginActivity.DONE_LOGIN, false);
         if (ACCOUNT == null) {
             Log.d(TAG, "" + mDoneLogin);

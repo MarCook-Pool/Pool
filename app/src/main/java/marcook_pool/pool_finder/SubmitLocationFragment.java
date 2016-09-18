@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 /**
  * Created by Carson on 17/09/2016.
  */
@@ -18,6 +21,7 @@ import android.widget.RatingBar;
 public class SubmitLocationFragment extends Fragment {
 
     Activity mActivity = getActivity();
+    private DatabaseReference mDatabase;
 
     Button mSubmitButton;
     Button mLocationButton;
@@ -30,9 +34,16 @@ public class SubmitLocationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_submit_locations, container, false);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         setViews();
         setClickListeners();
-        return view;
     }
 
     private void setViews(){
@@ -48,7 +59,14 @@ public class SubmitLocationFragment extends Fragment {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                PoolTable curTable = new PoolTable();
+                curTable.ID = 0;
+                curTable.description = mDescription.getText().toString();
+                curTable.establishment = mEstablishment.getText().toString();
+                curTable.rating = mRating.getNumStars();
+                curTable.photoURL = "";
 
+                mDatabase.child("Tables").child(String.valueOf(curTable.ID)).setValue(curTable);
             }
         });
     }

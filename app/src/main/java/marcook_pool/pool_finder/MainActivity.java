@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.util.Log;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
 
@@ -21,21 +23,26 @@ public class MainActivity extends AppCompatActivity {
     private final String TABLE_LOCATIONS = "table_locations";
     private final String SUBMIT_LOCATION = "submit_location";
 
+    public static GoogleSignInAccount ACCOUNT = null;
+
     private boolean mDoneLogin = false;
 
     SharedPreferences mPrefs;
     PoolLocationsFragment mPoolLocationsFragment = new PoolLocationsFragment();
     SubmitLocationFragment mSubmitLocationFragment = new SubmitLocationFragment();
 
+    //TODO: Remember if logged in in preferences
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         mPrefs = getPreferences(Context.MODE_PRIVATE); //TODO: for remembering login
 
         mDoneLogin = getIntent().getBooleanExtra(LoginActivity.DONE_LOGIN, false);
-        if (!mDoneLogin) {
+        if (ACCOUNT == null) {
             Log.d(TAG, "" + mDoneLogin);
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             this.startActivity(intent);

@@ -4,99 +4,110 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:weightSum="1">
-
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/add_photo_button"
+                        style="@style/SubmitLocationStyle"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="0dp"
+                        android:layout_width="165dp"
+                        android:text="@string/add_photo_button"
+                        android:textColor="@color/button_text_color" />
+
+                    <Button
+                        android:id="@+id/location"
+                        style="@style/SubmitLocationStyle"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_width="165dp"
+                        android:text="@string/add_location"
+                        android:textColor="@color/button_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical"
+                    android:background="@color/colorAccent">
+                    <ImageView
+                        android:id="@+id/photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@color/button_background"
+                        android:contentDescription="@string/imageview_description" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/establishment"
+                style="@style/SubmitLocationStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:hint="@string/establishment_hint"
+                android:textAlignment="viewStart" />
+
+            <EditText
+                android:id="@+id/description"
+                style="@style/SubmitLocationStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:hint="@string/description_hint"
+                android:textAlignment="viewStart" />
+
+            <TextView
+                style="@style/SubmitLocationStyle"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="0dp"
+                android:text="@string/rate" />
+
+            <RatingBar
+                android:id="@+id/rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="0.5" />
 
             <Button
-                android:id="@+id/add_photo_button"
+                android:id="@+id/submit"
                 style="@style/SubmitLocationStyle"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="165dp"
-                android:text="@string/add_photo_button"
-                android:textColor="@color/button_text_color" />
-
-            <Button
-                android:id="@+id/location"
-                style="@style/SubmitLocationStyle"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp"
-                android:layout_width="165dp"
-                android:text="@string/add_location"
+                android:layout_gravity="center"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/submit_button"
                 android:textColor="@color/button_text_color" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="20dp"
-            android:orientation="vertical"
-            android:background="@color/colorAccent">
-        <ImageView
-            android:id="@+id/photo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginBottom="1dp"
-            android:background="@color/button_background"
-            android:contentDescription="@string/imageview_description" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/establishment"
-        style="@style/SubmitLocationStyle"
-        android:layout_width="match_parent"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:hint="@string/establishment_hint"
-        android:textAlignment="viewStart" />
-
-    <EditText
-        android:id="@+id/description"
-        style="@style/SubmitLocationStyle"
-        android:layout_width="match_parent"
-        android:layout_marginRight="20dp"
-        android:hint="@string/description_hint"
-        android:textAlignment="viewStart" />
-
-    <TextView
-        style="@style/SubmitLocationStyle"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="0dp"
-        android:text="@string/rate" />
-
-    <RatingBar
-        android:id="@+id/rating_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:numStars="5"
-        android:rating="0"
-        android:stepSize="0.5" />
-
-    <Button
-        android:id="@+id/submit"
-        style="@style/SubmitLocationStyle"
-        android:layout_gravity="center"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/submit_button"
-        android:textColor="@color/button_text_color" />
+    </ScrollView>
 </LinearLayout>

@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "200103739400",
-    "project_id": "pool-finder"
+    "firebase_url": "https://pool-finder-d52a3.firebaseio.com",
+    "project_id": "pool-finder",
+    "storage_bucket": "pool-finder.appspot.com"
   },
   "client": [
     {
@@ -21,6 +23,10 @@
           }
         },
         {
+          "client_id": "200103739400-4desvgufdjm58u82g3p7ddpfsei79vts.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
           "client_id": "200103739400-61t3rl1tal2jfpqmbofpkj4bsjrq35ki.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -35,11 +41,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "200103739400-4desvgufdjm58u82g3p7ddpfsei79vts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

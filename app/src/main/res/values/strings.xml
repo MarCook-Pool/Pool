@@ -39,6 +39,10 @@
     <string name="imageview_description">Picture of table</string>
     <string name="add_photo_button">Add a photo</string>
 
+    <!-- see locations-->
+    <string name="establishment">establishment</string>
+    <string name="travel_distance">Distance</string>
+
     <!--dialogs-->
     <string name="filter_results">Filter tables by:</string>
     <string name="best">Best pool tables near by</string>

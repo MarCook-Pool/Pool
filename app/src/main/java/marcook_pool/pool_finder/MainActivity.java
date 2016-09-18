@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +15,14 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
@@ -62,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
                 if (tab.getTag() == TABLE_LOCATIONS) {
                     ft.replace(R.id.activity_main, mPoolLocationsFragment);
+
                 } else if (tab.getTag() == SUBMIT_LOCATION) {
                     ft.replace(R.id.activity_main, mSubmitLocationFragment);
                 }

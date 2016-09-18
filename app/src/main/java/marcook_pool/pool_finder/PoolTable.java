@@ -28,4 +28,20 @@ public class PoolTable {
         this.description = description;
         this.rating = rating;
     }
+
+    public String getEstablishment() {
+        return establishment;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public int getRating() {
+        return rating;
+    }
 }

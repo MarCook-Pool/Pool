@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -66,7 +67,11 @@ public class SubmitLocationFragment extends Fragment {
                 curTable.rating = mRating.getNumStars();
                 curTable.photoURL = "";
 
-                mDatabase.child("Tables").child(String.valueOf(curTable.ID)).setValue(curTable);
+                mDatabase.child("Tables").child(curTable.establishment).setValue(curTable);
+                Toast.makeText(getContext(), getString(R.string.submitted_table), Toast.LENGTH_SHORT).show();
+                mDescription.setText("");
+                mEstablishment.setText("");
+                mRating.setRating(0);
             }
         });
     }

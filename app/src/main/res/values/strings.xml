@@ -38,4 +38,5 @@
     <string name="submit_button">Submit</string>
     <string name="imageview_description">Picture of table</string>
     <string name="add_photo_button">Add a photo</string>
+    <string name="submitted_table">Submitted Pool Table</string>
 </resources>

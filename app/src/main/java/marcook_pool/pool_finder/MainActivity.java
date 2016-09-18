@@ -1,5 +1,7 @@
 package marcook_pool.pool_finder;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -13,13 +15,19 @@ import android.util.Log;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class MainActivity extends AppCompatActivity {
+    private final String TAG = "MainActivity";
+
+    public static String KEY_SORT_PREF = "sort_pref";
+    public static String KEY_FILTER_PREF = "filter_pref";
+
     private final String TABLE_LOCATIONS = "table_locations";
     private final String SUBMIT_LOCATION = "submit_location";
-    private final String TAG = "MainActivity";
+
     public static GoogleSignInAccount ACCOUNT = null;
 
     private boolean mDoneLogin = false;
 
+    SharedPreferences mPrefs;
     PoolLocationsFragment mPoolLocationsFragment = new PoolLocationsFragment();
     SubmitLocationFragment mSubmitLocationFragment = new SubmitLocationFragment();
 
@@ -30,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        mPrefs = getPreferences(Context.MODE_PRIVATE); //TODO: for remembering login
+
         mDoneLogin = getIntent().getBooleanExtra(LoginActivity.DONE_LOGIN, false);
         if (ACCOUNT == null) {
             Log.d(TAG, "" + mDoneLogin);

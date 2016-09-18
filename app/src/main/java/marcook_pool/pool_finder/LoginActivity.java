@@ -189,6 +189,4 @@ public class LoginActivity extends AppCompatActivity implements
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
     }
-
-
 }

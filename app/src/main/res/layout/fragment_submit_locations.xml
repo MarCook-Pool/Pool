@@ -1,10 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
     <TextView
+        style="@style/TabHeaderStyle"
+        android:layout_marginBottom="20dp"
+        android:text="@string/submit_tables_tab"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/button_background"
+            android:contentDescription="@string/imageview_description"/>
+        <Button
+            android:id="@+id/add_photo_button"
+            style="@style/SubmitLocationStyle"
+            android:text="@string/add_photo_button"
+        android:layout_marginTop="25dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/establishment"
+            style="@style/SubmitLocationStyle"
+            android:layout_marginTop="15dp"
+            android:hint="@string/establishment_hint"/>
+
+        <Button
+            android:id="@+id/location"
+            style="@style/SubmitLocationStyle"
+            android:text="@string/add_location"/>
+    </LinearLayout>
+
+    <EditText
+        style="@style/SubmitLocationStyle"
+        android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:hint="@string/description_hint"
+        android:textAlignment="viewStart"/>
+
+    <TextView
+        style="@style/SubmitLocationStyle"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="0dp"
+        android:text="@string/rate"/>
+
+    <RatingBar
+        android:id="@+id/rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/submit_tables_tab"/>
+        android:layout_gravity="center"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="0.5"/>
+
+    <Button
+        style="@style/SubmitLocationStyle"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/submit_button"/>
 </LinearLayout>

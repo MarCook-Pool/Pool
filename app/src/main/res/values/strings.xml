@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pool-Finder</string>
+    <string name="app_name">Pool Finder</string>
 
     <!--options menu items-->
     <string name="search_item">Search</string>
@@ -30,6 +30,15 @@
     <string name="sign_in">Sign in</string>
     <string name="sign_out">Sign out</string>
 
+    <!--submit locations-->
+    <string name="establishment_hint">Establishment</string>
+    <string name="add_location">Add Location</string>
+    <string name="rate">Rate the table:</string>
+    <string name="description_hint">Description</string>
+    <string name="submit_button">Submit</string>
+    <string name="imageview_description">Picture of table</string>
+    <string name="add_photo_button">Add a photo</string>
+
     <!--dialogs-->
     <string name="filter_results">Filter tables by:</string>
     <string name="best">Best pool tables near by</string>
@@ -38,4 +47,6 @@
     <string name="sort_results">Sort tables by:</string>
     <string name="none">None</string>
 
+    <!-- database-->
+    <string name="submitted_table">Submitted Pool Table</string>
 </resources>

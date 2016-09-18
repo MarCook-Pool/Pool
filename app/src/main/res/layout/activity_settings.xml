@@ -5,25 +5,25 @@
               android:orientation="vertical">
 
     <Button
+        style="@style/ButtonStyle"
         android:id="@+id/filter"
-        style="@style/ButtonTheme"
         android:layout_width="match_parent"
         android:text="@string/filter"/>
 
     <Button
+        style="@style/ButtonStyle"
         android:id="@+id/sort"
-        style="@style/ButtonTheme"
         android:layout_width="match_parent"
         android:text="@string/sort"/>
 
     <Button
+        style="@style/ButtonStyle"
         android:id="@+id/manage_privates"
-        style="@style/ButtonTheme"
         android:layout_width="match_parent"
         android:text="@string/manage_private_locations"/>
 
     <Button
-        style="@style/ButtonTheme"
+        style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:id="@+id/signInButton"
         android:text="@string/sign_in"/>

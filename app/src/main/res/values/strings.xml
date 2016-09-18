@@ -47,4 +47,6 @@
     <string name="sort_results">Sort tables by:</string>
     <string name="none">None</string>
 
+    <!-- database-->
+    <string name="submitted_table">Submitted Pool Table</string>
 </resources>

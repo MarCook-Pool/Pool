@@ -39,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity implements
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        mIsSignedIn = MainActivity.ACCOUNT != null;
+        mIsSignedIn = (MainActivity.ACCOUNT != null);
         if (mIsSignedIn)
         {
             mSignInOrOut.setText(getText(R.string.sign_out));

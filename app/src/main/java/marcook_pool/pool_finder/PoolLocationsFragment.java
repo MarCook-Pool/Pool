@@ -3,22 +3,22 @@ package marcook_pool.pool_finder;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.Pools;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Vector;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Carson on 17/09/2016.
@@ -26,12 +26,24 @@ import java.util.Vector;
 
 public class PoolLocationsFragment extends Fragment {
     //TODO: use sharedprefs to get how to sort tables
+    private final String TAG = "PoolLocationsFragment";
+
     private DatabaseReference mDatabase;
-    private static final String TAG = "PoolLocationsFragment";
+
+    public RecyclerView mRecyclerView;
+    private LinearLayoutManager mLayoutManager;
+    private RecyclerViewAdapter mAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_pool_locations, container, false);
+
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+        mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
         //Query tableQuery = mDatabase.child("Tables").orderByChild("establishment");
         mDatabase.child("Tables").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -43,7 +55,10 @@ public class PoolLocationsFragment extends Fragment {
                         // User is null, error out
                         Log.e(TAG, "Pool table is unexpectedly null");
                     } else {
-                        //TODO: Add card;
+                        List<PoolTable> list = new ArrayList<PoolTable>();
+                        list.add(curTable);
+                        mAdapter = new RecyclerViewAdapter(list, getContext());
+                        mRecyclerView.setAdapter(mAdapter);
                         Log.d(TAG, "Pool Table: " + curTable.establishment);
                     }
                 }
@@ -54,6 +69,7 @@ public class PoolLocationsFragment extends Fragment {
                 Log.w(TAG, "PoolTableLocations: ", databaseError.toException());
             }
         });
-        return inflater.inflate(R.layout.fragment_pool_locations, container, false);
+
+        return v;
     }
 }

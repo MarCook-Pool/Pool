@@ -1,5 +1,6 @@
 package marcook_pool.pool_finder;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -13,13 +14,18 @@ import android.util.Log;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class MainActivity extends AppCompatActivity {
+    private final String TAG = "MainActivity";
+
     private final String TABLE_LOCATIONS = "table_locations";
     private final String SUBMIT_LOCATION = "submit_location";
-    private final String TAG = "MainActivity";
+
+    public static String KEY_LOGGED_IN = "logged_in?";
+    public static String LOG_IN_PREF = "log_in_pref";
+
     public static GoogleSignInAccount ACCOUNT = null;
+    private boolean mLoggedIn = false;
 
-    private boolean mDoneLogin = false;
-
+    SharedPreferences mPrefs;
     PoolLocationsFragment mPoolLocationsFragment = new PoolLocationsFragment();
     SubmitLocationFragment mSubmitLocationFragment = new SubmitLocationFragment();
 
@@ -28,13 +34,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-        mDoneLogin = getIntent().getBooleanExtra(LoginActivity.DONE_LOGIN, false);
-        if (ACCOUNT == null) {
-            Log.d(TAG, "" + mDoneLogin);
+
+        mLoggedIn = getIntent().getBooleanExtra(LoginActivity.KEY_DONE_LOGIN, false);
+        mPrefs = getSharedPreferences(LOG_IN_PREF, 0);
+        mLoggedIn = mPrefs.getBoolean(KEY_LOGGED_IN, mLoggedIn);
+        if (ACCOUNT == null || !mLoggedIn) {
+            Log.d(TAG, "Logged in: " + mLoggedIn);
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             this.startActivity(intent);
+            //TODO: finish here then have onactivityforresult from login activity, where mLoggedIn is set and maketabs called, have else with this if to call maketabs
         }
         makeTabs();
     }
@@ -93,5 +102,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPrefs.edit().putBoolean(KEY_LOGGED_IN, mLoggedIn).apply();
     }
 }

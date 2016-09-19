@@ -28,7 +28,6 @@
                 android:id="@+id/establishment"
                 style="@style/TableCardsStyle"
                 android:text="@string/establishment"
-                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/description"

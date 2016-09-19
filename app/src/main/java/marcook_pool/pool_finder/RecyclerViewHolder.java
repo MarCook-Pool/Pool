@@ -3,6 +3,7 @@ package marcook_pool.pool_finder;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -37,10 +38,10 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(mContext, OnePoolLocationActivity.class);
-        intent.putExtra(KEY_ESTABLISHMENT,mEstablishment.getText());
-        intent.putExtra(KEY_DESCRIPTION,mDescription.getText());
-        intent.putExtra(KEY_LOCATION,mLocation.getText());
-        intent.putExtra(KEY_RATING_BAR,mRatingBar.getRating());
+        intent.putExtra(KEY_ESTABLISHMENT, mEstablishment.getText());
+        intent.putExtra(KEY_DESCRIPTION, mDescription.getText());
+        intent.putExtra(KEY_LOCATION, mLocation.getText());
+        intent.putExtra(KEY_RATING_BAR, mRatingBar.getRating());
         mContext.startActivity(intent);
     }
 }

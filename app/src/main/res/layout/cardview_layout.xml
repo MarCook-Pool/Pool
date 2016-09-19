@@ -45,16 +45,19 @@
                 android:textColor="@color/text_lighter"/>
         </LinearLayout>
 
-        <!--<TextView
+        <TextView
             android:id="@+id/distance"
             style="@style/TableCardsStyle"
             android:text="@string/travel_distance"
-            android:textSize="18sp"/>
+            android:textSize="15sp"
+            android:textColor="@color/text_lighter"
+            android:layout_marginStart="270dp"
+            android:layout_marginTop="50dp"/>
 
         <RatingBar
-            android:id="@+id/ratingbar"
+            android:id="@+id/rating_bar"
             style="@style/TableCardsStyle"
-            android:rating="0"/>-->
+            android:layout_marginStart="120dp"/>
 
     </android.support.v7.widget.CardView>
 

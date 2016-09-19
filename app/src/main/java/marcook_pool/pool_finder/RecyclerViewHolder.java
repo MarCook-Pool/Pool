@@ -20,8 +20,8 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
         itemView.setOnClickListener(this);
         mEstablishment = (TextView) itemView.findViewById(R.id.establishment);
         mDescription = (TextView) itemView.findViewById(R.id.description);
-      //  mDistance = (TextView) itemView.findViewById(R.id.distance);
-      //  mRatingBar = (RatingBar) itemView.findViewById(R.id.rating_bar);
+        mDistance = (TextView) itemView.findViewById(R.id.distance);
+        mRatingBar = (RatingBar) itemView.findViewById(R.id.rating_bar);
     }
     @Override
     public void onClick(View view) {

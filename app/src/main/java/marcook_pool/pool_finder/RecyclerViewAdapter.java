@@ -2,6 +2,7 @@ package marcook_pool.pool_finder;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +33,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         holder.mEstablishment.setText(poolTable.get(position).getEstablishment());
         holder.mDescription.setText(poolTable.get(position).getDescription());
-        holder.mDistance.setText(poolTable.get(position).getLocation());
-        holder.mRatingBar.setRating(poolTable.get(position).getRating());
+        holder.mLocation.setText(poolTable.get(position).getLocation());
+        holder.mRatingBar.setRating(poolTable.get(position).getReview());
     }
 
     @Override

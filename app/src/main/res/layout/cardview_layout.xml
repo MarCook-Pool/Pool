@@ -46,7 +46,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/distance"
+            android:id="@+id/location"
             style="@style/TableCardsStyle"
             android:text="@string/travel_distance"
             android:textSize="15sp"

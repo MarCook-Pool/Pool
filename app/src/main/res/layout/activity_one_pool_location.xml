@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_one_pool_location"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="marcook_pool.pool_finder.OnePoolLocationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/establishment"
+            style="@style/TableCardsStyle"
+            android:text="@string/establishment"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_primary"/>
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/TableCardsStyle"
+            android:text="@string/description_hint"
+            android:textSize="15sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_lighter"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/location"
+        style="@style/TableCardsStyle"
+        android:text="@string/travel_distance"
+        android:textSize="15sp"
+        android:textColor="@color/text_lighter"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="50dp"/>
+
+    <RatingBar
+        android:id="@+id/rating_bar"
+        style="@style/TableCardsStyle"
+        android:layout_marginStart="120dp"/>
+
+</RelativeLayout>

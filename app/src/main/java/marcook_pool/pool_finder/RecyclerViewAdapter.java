@@ -32,7 +32,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         holder.mEstablishment.setText(poolTable.get(position).getEstablishment());
         holder.mDescription.setText(poolTable.get(position).getDescription());
-        holder.mDistance.setText(poolTable.get(position).getLocation());
+        holder.mLocation.setText(poolTable.get(position).getLocation());
         holder.mRatingBar.setNumStars(poolTable.get(position).getRating());
     }
 

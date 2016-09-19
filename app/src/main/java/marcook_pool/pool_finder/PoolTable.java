@@ -13,7 +13,7 @@ public class PoolTable {
     String establishment;
     String location;
     String description;
-    int rating; // out of 50 - divide by 10 when using
+    float rating;
 
     public PoolTable() {
 
@@ -41,7 +41,7 @@ public class PoolTable {
         return location;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 }

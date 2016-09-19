@@ -44,8 +44,7 @@ public class PoolLocationsFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        //Query tableQuery = mDatabase.child("Tables").orderByChild("establishment");
-        mDatabase.child("Tables").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("Verified Tables").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<PoolTable> list = new ArrayList<PoolTable>();

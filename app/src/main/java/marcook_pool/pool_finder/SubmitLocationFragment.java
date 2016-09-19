@@ -69,16 +69,16 @@ public class SubmitLocationFragment extends Fragment {
                     PoolTable curTable = new PoolTable();
                     curTable.ID = 0;
                     curTable.description = mDescription.getText().toString();
-                    if (mEstablishment.getText().toString().isEmpty() || mRating.getRating() < 1)
+                    if (mEstablishment.getText().toString().isEmpty() || mRating.getRating() < 0.5f)
                     {
                         Toast.makeText(getContext(), getString(R.string.invalid_entry), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     curTable.establishment = mEstablishment.getText().toString();
-                    curTable.rating = mRating.getNumStars();
+                    curTable.rating = mRating.getRating();
                     curTable.photoURL = "";
 
-                    mDatabase.child("Tables").child(curTable.establishment).setValue(curTable);
+                    mDatabase.child("Unverified Tables").child(curTable.establishment).setValue(curTable);
                     Toast.makeText(getContext(), getString(R.string.submitted_table), Toast.LENGTH_SHORT).show();
                     mDescription.setText("");
                     mEstablishment.setText("");

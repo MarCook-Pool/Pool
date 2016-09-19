@@ -6,7 +6,8 @@
     <color name="background">#FFFFFF</color>
     <color name="button_background">#e6e6e6</color>
     <color name="white">#FFFFFF</color>
-    <color name="button_text_color">#02529c</color>
+    <color name="text_primary">#02529c</color>
+    <color name="text_lighter">#0099ff</color>
     <color name="header_text_color">#ff0000</color>
     <color name="header_background">#6efb00</color>
     <color name="locations_color">#00ff00</color>

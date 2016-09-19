@@ -47,6 +47,7 @@
     <RatingBar
         android:id="@+id/rating_bar"
         style="@style/TableCardsStyle"
-        android:layout_marginStart="120dp"/>
+        android:layout_marginStart="120dp"
+        android:isIndicator="true"/>
 
 </RelativeLayout>

@@ -40,7 +40,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
         intent.putExtra(KEY_ESTABLISHMENT,mEstablishment.getText());
         intent.putExtra(KEY_DESCRIPTION,mDescription.getText());
         intent.putExtra(KEY_LOCATION,mLocation.getText());
-        intent.putExtra(KEY_RATING_BAR,mRatingBar.getNumStars());
+        intent.putExtra(KEY_RATING_BAR,mRatingBar.getRating());
         mContext.startActivity(intent);
     }
 }

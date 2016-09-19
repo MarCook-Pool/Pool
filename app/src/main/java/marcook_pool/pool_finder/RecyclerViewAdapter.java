@@ -33,7 +33,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         holder.mEstablishment.setText(poolTable.get(position).getEstablishment());
         holder.mDescription.setText(poolTable.get(position).getDescription());
         holder.mLocation.setText(poolTable.get(position).getLocation());
-        holder.mRatingBar.setNumStars(poolTable.get(position).getRating());
+        holder.mRatingBar.setNumStars(poolTable.get(position).getReview());
     }
 
     @Override

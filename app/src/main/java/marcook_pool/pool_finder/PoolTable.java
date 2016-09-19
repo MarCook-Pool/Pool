@@ -41,7 +41,7 @@ public class PoolTable {
         return location;
     }
 
-    public int getRating() {
+    public int getReview() {
         return rating;
     }
 }

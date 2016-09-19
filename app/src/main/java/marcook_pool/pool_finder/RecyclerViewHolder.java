@@ -22,7 +22,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
     public TextView mLocation;
     public RatingBar mRatingBar;
 
-    Context mContext;
+    private Context mContext;
 
     public RecyclerViewHolder(View itemView) {
         super(itemView);

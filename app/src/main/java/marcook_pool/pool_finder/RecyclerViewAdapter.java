@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
-    public static int MAX_DESCRIP_LENGTH = 20;
+    public static int MAX_DESCRIP_LENGTH = 30;
 
     private List<PoolTable> poolTable; //list of each person's data
     private Context context;

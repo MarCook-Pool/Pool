@@ -28,7 +28,7 @@ public class OnePoolLocationActivity extends AppCompatActivity {
         mLeaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //send to review existing fragment
+                //send to review existing table location fragment
             }
         });
     }
@@ -41,11 +41,11 @@ public class OnePoolLocationActivity extends AppCompatActivity {
         mLeaveReview = (Button) findViewById(R.id.leave_review);
     }
 
-    private void setViewValues(){
+    private void setViewValues() {
         Intent intent = getIntent();
         mEstablishment.setText(intent.getStringExtra(RecyclerViewHolder.KEY_ESTABLISHMENT));
         mDescription.setText(intent.getStringExtra(RecyclerViewHolder.KEY_DESCRIPTION));
         mLocation.setText(intent.getStringExtra(RecyclerViewHolder.KEY_LOCATION));
-        mRatingBar.setRating(intent.getFloatExtra(RecyclerViewHolder.KEY_RATING_BAR,0));
+        mRatingBar.setRating(intent.getFloatExtra(RecyclerViewHolder.KEY_RATING_BAR, 0));
     }
 }

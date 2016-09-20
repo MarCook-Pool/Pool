@@ -29,36 +29,43 @@
             <TextView
                 android:id="@+id/establishment"
                 style="@style/TableCardsStyle"
-                android:text="@string/establishment"
-                android:textSize="18sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/text_primary"/>
+                android:text="@string/establishment"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/description"
                 style="@style/TableCardsStyle"
-                android:text="@string/description_hint"
-                android:textSize="15sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/text_lighter"/>
+                android:text="@string/description_hint"
+                android:textColor="@color/text_lighter"
+                android:textSize="15sp"/>
         </LinearLayout>
 
         <TextView
             android:id="@+id/location"
             style="@style/TableCardsStyle"
-            android:text="@string/travel_distance"
-            android:textSize="15sp"
-            android:textColor="@color/text_lighter"
             android:layout_marginStart="270dp"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="50dp"
+            android:text="@string/travel_distance"
+            android:textColor="@color/text_lighter"
+            android:textSize="15sp"/>
 
         <RatingBar
             android:id="@+id/rating_bar"
             style="@style/TableCardsStyle"
             android:layout_marginStart="120dp"
             android:isIndicator="true"/>
+
+        <!-- use to hold long description-->
+        <TextView
+            android:id="@+id/long_descrip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
     </android.support.v7.widget.CardView>
 

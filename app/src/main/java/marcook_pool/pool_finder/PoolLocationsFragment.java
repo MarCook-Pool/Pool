@@ -57,14 +57,13 @@ public class PoolLocationsFragment extends Fragment {
                         list.add(curTable);
                         mAdapter = new RecyclerViewAdapter(list, getContext());
                         mRecyclerView.setAdapter(mAdapter);
-                        Log.d(TAG, "Pool Table: " + curTable.establishment);
                     }
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "PoolTableLocations: ", databaseError.toException());
+                Log.d(TAG, "PoolTableLocations: ", databaseError.toException());
             }
         });
         return v;

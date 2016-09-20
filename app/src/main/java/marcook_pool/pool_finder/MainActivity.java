@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         mPrefs = getPreferences(Context.MODE_PRIVATE); //TODO: for remembering login
 
         if (ACCOUNT == null) {
-            Log.d(TAG, "" + mLoggedIn);
+            Log.d(TAG, "Logged in: " + mLoggedIn);
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             this.startActivity(intent);
             //TODO: finish here then have onactivityforresult from login activity, where mLoggedIn is set and maketabs called, have else with this if to call maketabs

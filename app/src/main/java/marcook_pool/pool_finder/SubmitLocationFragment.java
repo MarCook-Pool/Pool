@@ -75,7 +75,7 @@ public class SubmitLocationFragment extends Fragment {
                         return;
                     }
                     curTable.establishment = mEstablishment.getText().toString();
-                    curTable.rating = mRating.getNumStars();
+                    curTable.rating = mRating.getRating();
                     curTable.photoURL = "";
 
                     mDatabase.child("Tables").child(curTable.establishment).setValue(curTable);

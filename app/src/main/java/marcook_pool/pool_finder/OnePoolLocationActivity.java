@@ -1,6 +1,8 @@
 package marcook_pool.pool_finder;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +40,8 @@ public class OnePoolLocationActivity extends AppCompatActivity {
         mDescription = (TextView) findViewById(R.id.description);
         mLocation = (TextView) findViewById(R.id.location);
         mRatingBar = (RatingBar) findViewById(R.id.rating_bar);
+        /*Drawable stars = mRatingBar.getProgressDrawable();
+        stars.setTint(Color.YELLOW); turning given rating bar yellow*/
         mLeaveReview = (Button) findViewById(R.id.leave_review);
     }
 

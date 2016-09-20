@@ -20,6 +20,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
 
     public TextView mEstablishment;
     public TextView mDescription;
+    public TextView mLongDescription;
     public TextView mLocation;
     public RatingBar mRatingBar;
 
@@ -30,6 +31,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
         itemView.setOnClickListener(this);
         mEstablishment = (TextView) itemView.findViewById(R.id.establishment);
         mDescription = (TextView) itemView.findViewById(R.id.description);
+        mLongDescription = (TextView) itemView.findViewById(R.id.long_descrip);
         mLocation = (TextView) itemView.findViewById(R.id.location);
         mRatingBar = (RatingBar) itemView.findViewById(R.id.rating_bar);
         mContext = mEstablishment.getContext(); //holder has no context, can't use getContext, but TextView does
@@ -38,10 +40,19 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(mContext, OnePoolLocationActivity.class);
-        intent.putExtra(KEY_ESTABLISHMENT, mEstablishment.getText());
-        intent.putExtra(KEY_DESCRIPTION, mDescription.getText());
-        intent.putExtra(KEY_LOCATION, mLocation.getText());
+        intent.putExtra(KEY_ESTABLISHMENT, mEstablishment.getText().toString());
+        String descrip = mDescription.getText().toString();
+        if (descripContinues(descrip)) {
+            intent.putExtra(KEY_DESCRIPTION, mLongDescription.getText().toString());
+        } else {
+            intent.putExtra(KEY_DESCRIPTION, mDescription.getText().toString());
+        }
+        intent.putExtra(KEY_LOCATION, mLocation.getText().toString());
         intent.putExtra(KEY_RATING_BAR, mRatingBar.getRating());
         mContext.startActivity(intent);
+    }
+
+    private boolean descripContinues(String descrip) { //descrip continues longer if ends in 3 periods
+        return descrip.charAt(descrip.length() - 1) == '.' && descrip.charAt(descrip.length() - 2) == '.' && descrip.charAt(descrip.length() - 3) == '.';
     }
 }

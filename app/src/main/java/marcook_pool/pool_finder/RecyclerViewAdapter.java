@@ -14,6 +14,8 @@ import java.util.List;
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
+    public static int MAX_DESCRIP_LENGTH = 20;
+
     private List<PoolTable> poolTable; //list of each person's data
     private Context context;
 
@@ -32,7 +34,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         holder.mEstablishment.setText(poolTable.get(position).getEstablishment());
-        holder.mDescription.setText(poolTable.get(position).getDescription());
+        String description = poolTable.get(position).getDescription();
+        if (description.length() <= MAX_DESCRIP_LENGTH) {
+            holder.mDescription.setText(description);
+        } else {
+            String shortDescription = "";
+            for (int i = 0; i < MAX_DESCRIP_LENGTH - 3; i++) { //leave room for 3 dots
+                shortDescription += description.charAt(i);
+            }
+            shortDescription += "...";
+            holder.mDescription.setText(shortDescription);
+            holder.mLongDescription.setText(description);
+        }
         holder.mLocation.setText(poolTable.get(position).getLocation());
         holder.mRatingBar.setRating(poolTable.get(position).getReview());
     }

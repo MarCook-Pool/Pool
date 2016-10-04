@@ -1,64 +1,105 @@
-package marcook_pool.pool_finder;
+package marcook_pool.pool_finder.activites;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.AlignmentSpan;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.content.Intent;
-import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.stormpath.sdk.Stormpath;
+import com.stormpath.sdk.StormpathCallback;
+import com.stormpath.sdk.StormpathConfiguration;
+import com.stormpath.sdk.models.StormpathError;
+import com.stormpath.sdk.models.UserProfile;
+import com.stormpath.sdk.ui.StormpathLoginActivity;
 
-import java.util.ArrayList;
-import java.util.List;
+import marcook_pool.pool_finder.fragments.PoolLocationsFragment;
+import marcook_pool.pool_finder.R;
+import marcook_pool.pool_finder.fragments.ui.SubmitLocationFragment;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
 
     public static String KEY_SORT_PREF = "sort_pref";
     public static String KEY_FILTER_PREF = "filter_pref";
-    public static String KEY_LOGGED_IN = "logged_in?";
 
     private final String TABLE_LOCATIONS = "table_locations";
     private final String SUBMIT_LOCATION = "submit_location";
 
-    public static GoogleSignInAccount ACCOUNT = null;
+    public static final String baseUrl = "https://stormpathnotes.herokuapp.com/";
 
-    private boolean mLoggedIn = false;
-
-    SharedPreferences mPrefs;
     PoolLocationsFragment mPoolLocationsFragment = new PoolLocationsFragment();
     SubmitLocationFragment mSubmitLocationFragment = new SubmitLocationFragment();
 
-    //TODO: Remember if logged in in preferences
+    OkHttpClient okHttpClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLoggedIn = getIntent().getBooleanExtra(LoginActivity.KEY_DONE_LOGIN, false);
-        mPrefs = getPreferences(Context.MODE_PRIVATE); //TODO: for remembering login
+        login();
+    }
 
-        if (ACCOUNT == null) {
-            Log.d(TAG, "Logged in: " + mLoggedIn);
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            this.startActivity(intent);
-            //TODO: finish here then have onactivityforresult from login activity, where mLoggedIn is set and maketabs called, have else with this if to call maketabs
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Stormpath.getUserProfile(new StormpathCallback<UserProfile>() {
+            @Override
+            public void onSuccess(UserProfile userProfile) {
+                showToast(getString(R.string.logged_in));
+                makeTabs();
+            }
+
+            @Override
+            public void onFailure(StormpathError error) {
+                // Show error message and login view
+                showToast(getString(R.string.error_logging_in));
+                Log.d(TAG,"stormpath login error: "+error);
+                startActivity(new Intent(MainActivity.this, StormpathLoginActivity.class));
+            }
+        });
+    }
+
+    private void login() {
+        if (!Stormpath.isInitialized()) { //don't need to redo these things if just re-opening app
+            // Initialize Stormpath if not already
+            StormpathConfiguration stormpathConfiguration = new StormpathConfiguration.Builder()
+                    .baseUrl(baseUrl)
+                    .build();
+            Stormpath.init(this, stormpathConfiguration);
+
+            // Initialize OkHttp library.
+            HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+                @Override
+                public void log(String message) {
+                    Stormpath.logger().d(message);
+                }
+            });
+
+            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            this.okHttpClient = new OkHttpClient.Builder()
+                    .addNetworkInterceptor(httpLoggingInterceptor)
+                    .build();
+            startActivity(new Intent(this, StormpathLoginActivity.class));
         }
-        makeTabs();
+
+
     }
 
     private void makeTabs() {
@@ -94,6 +135,14 @@ public class MainActivity extends AppCompatActivity {
                 .setTag(SUBMIT_LOCATION).setTabListener(tabListener));
     }
 
+    private void showToast(String text){
+        Spannable centeredText = new SpannableString(text);
+        centeredText.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER),
+                0, text.length() - 1,
+                Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        Toast.makeText(this,centeredText,Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -109,18 +158,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.settings:
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                this.startActivity(intent);
+                startActivity(intent);
                 return true;
             case R.id.review_app:
                 //TODO: send to play store or some review process
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mPrefs.edit().putBoolean(KEY_LOGGED_IN, mLoggedIn).apply();
     }
 }

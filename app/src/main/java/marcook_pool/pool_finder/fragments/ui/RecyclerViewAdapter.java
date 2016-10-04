@@ -1,13 +1,14 @@
-package marcook_pool.pool_finder;
+package marcook_pool.pool_finder.fragments.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
+
+import marcook_pool.pool_finder.R;
 
 /**
  * Created by Carson on 18/09/2016.

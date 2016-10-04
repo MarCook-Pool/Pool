@@ -1,4 +1,4 @@
-package marcook_pool.pool_finder;
+package marcook_pool.pool_finder.fragments.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import marcook_pool.pool_finder.R;
 
 /**
  * Created by Carson on 17/09/2016.
@@ -47,7 +49,7 @@ public class SubmitLocationFragment extends Fragment {
         setClickListeners();
     }
 
-    private void setViews(){
+    private void setViews() {
         mSubmitButton = (Button) getView().findViewById(R.id.submit);
         mLocationButton = (Button) getView().findViewById(R.id.location);
         mPhotoButton = (Button) getView().findViewById(R.id.add_photo_button);
@@ -56,34 +58,26 @@ public class SubmitLocationFragment extends Fragment {
         mRating = (RatingBar) getView().findViewById(R.id.rating_bar);
     }
 
-    private void setClickListeners(){
+    private void setClickListeners() {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (MainActivity.ACCOUNT == null)
-                {
-                    Toast.makeText(getContext(), getString(R.string.must_log_in), Toast.LENGTH_SHORT).show();
+                PoolTable curTable = new PoolTable();
+                curTable.ID = 0;
+                curTable.description = mDescription.getText().toString();
+                if (mEstablishment.getText().toString().isEmpty() || mRating.getRating() < 0.5f) {
+                    Toast.makeText(getContext(), getString(R.string.invalid_entry), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                else {
-                    PoolTable curTable = new PoolTable();
-                    curTable.ID = 0;
-                    curTable.description = mDescription.getText().toString();
-                    if (mEstablishment.getText().toString().isEmpty() || mRating.getRating() < 0.5f)
-                    {
-                        Toast.makeText(getContext(), getString(R.string.invalid_entry), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    curTable.establishment = mEstablishment.getText().toString();
-                    curTable.rating = mRating.getRating();
-                    curTable.photoURL = "";
+                curTable.establishment = mEstablishment.getText().toString();
+                curTable.rating = mRating.getRating();
+                curTable.photoURL = "";
 
-                    mDatabase.child("Unverified Tables").child(curTable.establishment).setValue(curTable);
-                    Toast.makeText(getContext(), getString(R.string.submitted_table), Toast.LENGTH_SHORT).show();
-                    mDescription.setText("");
-                    mEstablishment.setText("");
-                    mRating.setRating(0);
-                }
+                mDatabase.child("Unverified Tables").child(curTable.establishment).setValue(curTable);
+                Toast.makeText(getContext(), getString(R.string.submitted_table), Toast.LENGTH_SHORT).show();
+                mDescription.setText("");
+                mEstablishment.setText("");
+                mRating.setRating(0);
             }
         });
     }

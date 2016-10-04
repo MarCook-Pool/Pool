@@ -1,4 +1,4 @@
-package marcook_pool.pool_finder;
+package marcook_pool.pool_finder.fragments.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import marcook_pool.pool_finder.R;
 
 /**
  * Created by Carson on 17/09/2016.

@@ -9,13 +9,10 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AlignmentSpan;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.content.Intent;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stormpath.sdk.Stormpath;
@@ -53,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         login();
+        makeTabs();
     }
 
     @Override
@@ -63,14 +61,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UserProfile userProfile) {
                 showToast(getString(R.string.logged_in));
-                makeTabs();
             }
 
             @Override
             public void onFailure(StormpathError error) {
                 // Show error message and login view
-                showToast(getString(R.string.error_logging_in));
-                Log.d(TAG,"stormpath login error: "+error);
+                if (error.code() != -1) { //unknown error, happens when open app for first time. Don't show toast for this
+                    showToast(getString(R.string.error_logging_in));
+                }
+                Log.d(TAG, "stormpath login error: " + error.message());
                 startActivity(new Intent(MainActivity.this, StormpathLoginActivity.class));
             }
         });
@@ -98,8 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     .build();
             startActivity(new Intent(this, StormpathLoginActivity.class));
         }
-
-
+        //startActivity(new Intent(this, StormpathLoginActivity.class));
     }
 
     private void makeTabs() {
@@ -135,12 +133,12 @@ public class MainActivity extends AppCompatActivity {
                 .setTag(SUBMIT_LOCATION).setTabListener(tabListener));
     }
 
-    private void showToast(String text){
+    private void showToast(String text) {
         Spannable centeredText = new SpannableString(text);
         centeredText.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER),
                 0, text.length() - 1,
                 Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        Toast.makeText(this,centeredText,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, centeredText, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -165,5 +163,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Stormpath.logout();
     }
 }

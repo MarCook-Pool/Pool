@@ -22,6 +22,7 @@ import java.util.List;
 import marcook_pool.pool_finder.R;
 import marcook_pool.pool_finder.fragments.ui.PoolTable;
 import marcook_pool.pool_finder.fragments.ui.RecyclerViewAdapter;
+import marcook_pool.pool_finder.fragments.ui.SimpleDividerItemDecoration;
 
 /**
  * Created by Carson on 17/09/2016.

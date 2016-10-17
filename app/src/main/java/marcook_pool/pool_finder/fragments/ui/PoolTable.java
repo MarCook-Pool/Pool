@@ -1,4 +1,4 @@
-package marcook_pool.pool_finder;
+package marcook_pool.pool_finder.fragments.ui;
 
 /**
  * Created by ryan on 18/09/16.

@@ -1,4 +1,4 @@
-package marcook_pool.pool_finder;
+package marcook_pool.pool_finder.fragments.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import marcook_pool.pool_finder.R;
 
 /**
  * Created by Carson on 18/09/2016.

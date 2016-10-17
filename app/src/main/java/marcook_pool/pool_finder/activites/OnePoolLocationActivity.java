@@ -1,15 +1,15 @@
-package marcook_pool.pool_finder;
+package marcook_pool.pool_finder.activites;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import marcook_pool.pool_finder.R;
+import marcook_pool.pool_finder.fragments.ui.RecyclerViewHolder;
 
 public class OnePoolLocationActivity extends AppCompatActivity {
 

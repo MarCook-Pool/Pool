@@ -1,4 +1,4 @@
-package marcook_pool.pool_finder;
+package marcook_pool.pool_finder.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +18,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import marcook_pool.pool_finder.R;
+import marcook_pool.pool_finder.fragments.ui.PoolTable;
+import marcook_pool.pool_finder.fragments.ui.RecyclerViewAdapter;
+import marcook_pool.pool_finder.fragments.ui.SimpleDividerItemDecoration;
 
 /**
  * Created by Carson on 17/09/2016.

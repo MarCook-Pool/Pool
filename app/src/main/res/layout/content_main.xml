@@ -5,6 +5,6 @@
               android:layout_height="wrap_content"
               android:backgroundTint="@color/text_primary"
               android:orientation="vertical"
-              tools:context="marcook_pool.pool_finder.MainActivity"
+              tools:context="marcook_pool.pool_finder.activites.MainActivity"
               tools:showIn="@layout/activity_main">
 </LinearLayout>

@@ -1,16 +1,14 @@
-package marcook_pool.pool_finder;
+package marcook_pool.pool_finder.fragments.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import marcook_pool.pool_finder.R;
+import marcook_pool.pool_finder.activites.OnePoolLocationActivity;
 
 /**
  * Created by Carson on 18/09/2016.

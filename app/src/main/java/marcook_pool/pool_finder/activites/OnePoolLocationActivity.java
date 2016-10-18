@@ -1,5 +1,7 @@
 package marcook_pool.pool_finder.activites;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +12,11 @@ import android.widget.TextView;
 
 import marcook_pool.pool_finder.R;
 import marcook_pool.pool_finder.fragments.ui.RecyclerViewHolder;
+import marcook_pool.pool_finder.fragments.ui.ReviewExistingTableFragment;
 
 public class OnePoolLocationActivity extends AppCompatActivity {
+    public static final String KEY_ESTABLISHMENT = "key_establishment";
+
 
     public TextView mEstablishment;
     public TextView mDescription;
@@ -19,18 +24,28 @@ public class OnePoolLocationActivity extends AppCompatActivity {
     public RatingBar mRatingBar;
     public Button mLeaveReview;
 
+    ReviewExistingTableFragment mReviewExistingFragment = new ReviewExistingTableFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one_pool_location);
 
         setViews();
-        setViewValues();
 
         mLeaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //send to review existing table location fragment
+                Bundle bundle = new Bundle();
+                bundle.putString((String) mEstablishment.getText(), KEY_ESTABLISHMENT);
+                mReviewExistingFragment.setArguments(bundle);
+
+                disappearViews();
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.activity_one_pool_location, mReviewExistingFragment);
+                fragmentTransaction.commit();
             }
         });
     }
@@ -43,6 +58,8 @@ public class OnePoolLocationActivity extends AppCompatActivity {
         /*Drawable stars = mRatingBar.getProgressDrawable();
         stars.setTint(Color.YELLOW); turning given rating bar yellow*/
         mLeaveReview = (Button) findViewById(R.id.leave_review);
+
+        setViewValues();
     }
 
     private void setViewValues() {
@@ -51,5 +68,13 @@ public class OnePoolLocationActivity extends AppCompatActivity {
         mDescription.setText(intent.getStringExtra(RecyclerViewHolder.KEY_DESCRIPTION));
         mLocation.setText(intent.getStringExtra(RecyclerViewHolder.KEY_LOCATION));
         mRatingBar.setRating(intent.getFloatExtra(RecyclerViewHolder.KEY_RATING_BAR, 0));
+    }
+
+    private void disappearViews(){
+        mEstablishment.setVisibility(View.GONE);
+        mDescription.setVisibility(View.GONE);
+        mRatingBar.setVisibility(View.GONE);
+        mLocation.setVisibility(View.GONE);
+        mLeaveReview.setVisibility(View.GONE);
     }
 }

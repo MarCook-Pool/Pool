@@ -55,7 +55,7 @@ public class ReviewExistingTableFragment extends Fragment {
         mRating = (RatingBar) getView().findViewById(R.id.rating_bar);
         mImage = (ImageView) getView().findViewById(R.id.photo);
 
-        mTable.setText(getArguments().getString(OnePoolLocationActivity.KEY_ESTABLISHMENT));
+        mTable.setText(getArguments().getString(RecyclerViewHolder.KEY_ESTABLISHMENT));
     }
 
     void setOnClickListeners() {
@@ -66,7 +66,7 @@ public class ReviewExistingTableFragment extends Fragment {
                     Toast.makeText(getContext(), getString(R.string.no_descrip), Toast.LENGTH_SHORT).show();
                 } else {
                     //TODO: upload to firebase database
-                    getActivity().getFragmentManager().popBackStack(); //end fragment
+                    getActivity().finish();
                 }
             }
         });

@@ -60,7 +60,6 @@ public class PoolTableReviewFragment extends Fragment {
     private void setViewValues() {
         Bundle bundle = getArguments();
         mEstablishment.setText(bundle.getString(RecyclerViewHolder.KEY_ESTABLISHMENT));
-        Log.d("sdf","yo: "+bundle.getString(RecyclerViewHolder.KEY_ESTABLISHMENT));
         mDescription.setText(bundle.getString(RecyclerViewHolder.KEY_DESCRIPTION));
         mLocation.setText(bundle.getString(RecyclerViewHolder.KEY_LOCATION));
         mRatingBar.setRating(bundle.getFloat(RecyclerViewHolder.KEY_RATING_BAR, 0));

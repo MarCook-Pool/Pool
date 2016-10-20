@@ -26,9 +26,8 @@ public class OnePoolLocationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = new Bundle();
         bundle.putString(RecyclerViewHolder.KEY_ESTABLISHMENT, intent.getStringExtra(RecyclerViewHolder.KEY_ESTABLISHMENT));
-        Log.d("sdf","act: "+bundle.getString(RecyclerViewHolder.KEY_ESTABLISHMENT));
-        bundle.putString(RecyclerViewHolder.KEY_ESTABLISHMENT, intent.getStringExtra(RecyclerViewHolder.KEY_DESCRIPTION));
-        bundle.putString(RecyclerViewHolder.KEY_ESTABLISHMENT, intent.getStringExtra(RecyclerViewHolder.KEY_LOCATION));
+        bundle.putString(RecyclerViewHolder.KEY_DESCRIPTION, intent.getStringExtra(RecyclerViewHolder.KEY_DESCRIPTION));
+        bundle.putString(RecyclerViewHolder.KEY_LOCATION, intent.getStringExtra(RecyclerViewHolder.KEY_LOCATION));
         bundle.putFloat(RecyclerViewHolder.KEY_RATING_BAR, intent.getFloatExtra(RecyclerViewHolder.KEY_RATING_BAR, 0));
         mPoolTableReviewFragment.setArguments(bundle);
         FragmentManager fm = getFragmentManager();

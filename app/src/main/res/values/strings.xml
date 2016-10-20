@@ -59,4 +59,8 @@
     <!--login messages-->
     <string name="logged_in">Logged in</string>
     <string name="error_logging_in">Error logging in. Please check your Internet connection</string>
+
+    <!-- poor data for submit-->
+    <string name="no_descrip">Please provide a description</string>
+    <string name="no_rating">You gave a rating of 0 stars. Are you sure you want this?</string>
 </resources>

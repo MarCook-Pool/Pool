@@ -1,4 +1,4 @@
-package marcook_pool.pool_finder.fragments.ui;
+package marcook_pool.pool_finder.ui;
 
 /**
  * Created by ryan on 18/09/16.
@@ -8,12 +8,12 @@ import com.google.firebase.database.IgnoreExtraProperties;
 // [START blog_user_class]
 @IgnoreExtraProperties
 public class PoolTable {
-    int ID;
-    String photoURL;
-    String establishment;
-    String location;
-    String description;
-    float rating;
+    public int ID;
+    public String photoURL;
+    public String establishment;
+    public String location;
+    public String description;
+    public float rating;
 
     public PoolTable() {
 

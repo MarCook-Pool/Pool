@@ -1,4 +1,4 @@
-package marcook_pool.pool_finder.fragments.ui;
+package marcook_pool.pool_finder.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -5,12 +5,10 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import marcook_pool.pool_finder.R;
 import marcook_pool.pool_finder.fragments.PoolTableReviewFragment;
-import marcook_pool.pool_finder.fragments.ui.RecyclerViewHolder;
-import marcook_pool.pool_finder.fragments.ui.ReviewExistingTableFragment;
+import marcook_pool.pool_finder.ui.RecyclerViewHolder;
 
 //TODO: back button
 

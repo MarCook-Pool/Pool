@@ -24,7 +24,7 @@ import com.stormpath.sdk.ui.StormpathLoginActivity;
 
 import marcook_pool.pool_finder.fragments.PoolLocationsFragment;
 import marcook_pool.pool_finder.R;
-import marcook_pool.pool_finder.fragments.ui.SubmitLocationFragment;
+import marcook_pool.pool_finder.fragments.SubmitLocationFragment;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 

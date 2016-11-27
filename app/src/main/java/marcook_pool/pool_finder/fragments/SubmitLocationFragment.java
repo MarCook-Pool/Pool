@@ -1,4 +1,4 @@
-package marcook_pool.pool_finder.fragments.ui;
+package marcook_pool.pool_finder.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import marcook_pool.pool_finder.R;
+import marcook_pool.pool_finder.ui.PoolTable;
 
 /**
  * Created by Carson on 17/09/2016.

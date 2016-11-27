@@ -1,4 +1,4 @@
-package marcook_pool.pool_finder.fragments.ui;
+package marcook_pool.pool_finder.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

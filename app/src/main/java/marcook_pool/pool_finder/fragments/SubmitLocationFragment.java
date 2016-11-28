@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,15 +69,18 @@ public class SubmitLocationFragment extends Fragment {
         mLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mGpsManager.canGetLocation()) { //have permission, gps on, good to go
-                    mCoordinates += mGpsManager.getLatitude();
-                    mCoordinates += mGpsManager.getLongitude();
-                } else if (mGpsManager.haveGpsPermission()) { //have permission, gps not turned on, prompt it to turn on
-                    mGpsManager.promptTurnOnGps();
-                } else { //don't have gps permission, request it
+                Log.d("submittable", "canGetLocation: " + mGpsManager.canGetLocation() + " permish: " + mGpsManager.haveGpsPermission());
+                if (!mGpsManager.haveGpsPermission()) { //request locaiton permissions
                     ActivityCompat.requestPermissions(getActivity(),
-                            new String[]{Manifest.permission.READ_CONTACTS},
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                             MY_PERMISSIONS_REQUEST_FINE_LOCATION);
+                } else if (!mGpsManager.canGetLocation()) { //have permission but location service not on
+                    mGpsManager.promptTurnOnGps();
+                    //TODO when location turned on mid session it doesnt register
+                } else if (mGpsManager.canGetLocation() && mGpsManager.haveGpsPermission()) { //have permission, gps on, good to go
+                    mCoordinates = mGpsManager.getCoordinates();
+                    Toast.makeText(getActivity(), getString(R.string.location_recorded),
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });

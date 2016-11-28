@@ -42,17 +42,16 @@ public class GpsManager extends Service implements LocationListener {
     private Context mContext;
     private LocationManager mLocationManager;
 
-    public GpsManager(Context mContext) {
-        this.mContext = mContext;
+    public GpsManager(Context context) {
+        mContext = context;
+        mLocationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
+        mIsGpsEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        mIsNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
     public Location getLocation() {
         try {
-            mLocationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
-            mIsGpsEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-            mIsNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-            if (mIsGpsEnabled || mIsNetworkEnabled) {
+            if (canGetLocation()) {
                 // First get location from Network Provider
                 if (mIsNetworkEnabled) {
                     mLocationManager.requestLocationUpdates
@@ -120,19 +119,24 @@ public class GpsManager extends Service implements LocationListener {
         }
     }
 
+    public String getCoordinates(){
+        getLocation();
+        return "Lat: "+getLatitude()+" Long: "+getLongitude();
+    }
+
     public String getLatitude() {
-        return Location.convert(mLatitude,1);
+        return Location.convert(mLatitude, 1);
     }
 
     public String getLongitude() {
-        return Location.convert(mLongitude,1);
+        return Location.convert(mLongitude, 1);
     }
 
     public boolean canGetLocation() {
         return mIsNetworkEnabled || mIsGpsEnabled;
     }
 
-    public boolean haveGpsPermission(){
+    public boolean haveGpsPermission() {
         return ContextCompat.checkSelfPermission(mContext,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }

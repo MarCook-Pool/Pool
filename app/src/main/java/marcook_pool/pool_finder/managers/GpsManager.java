@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
@@ -32,12 +31,9 @@ public class GpsManager extends Service implements LocationListener {
     // The minimum time between updates in milliseconds
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60; // 1 minute
 
-    private int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
-
     //flags for able to get gps
     private boolean mIsGpsEnabled = false;
-    private boolean mIsNetowrkEnabled = false;
-    private boolean mCanGetLocation = false;
+    private boolean mIsNetworkEnabled = false;
 
     private Location mLocation;
     private double mLatitude;
@@ -54,12 +50,11 @@ public class GpsManager extends Service implements LocationListener {
         try {
             mLocationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
             mIsGpsEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-            mIsNetowrkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            mIsNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-            if (mIsGpsEnabled || mIsNetowrkEnabled) {
-                mCanGetLocation = true;
+            if (mIsGpsEnabled || mIsNetworkEnabled) {
                 // First get location from Network Provider
-                if (mIsNetowrkEnabled) {
+                if (mIsNetworkEnabled) {
                     mLocationManager.requestLocationUpdates
                             (LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
                     Log.d("Network", "Network");
@@ -96,18 +91,18 @@ public class GpsManager extends Service implements LocationListener {
         return mLocation;
     }
 
-    public void promptTurnOnGps(){
+    public void promptTurnOnGps() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
         alertDialog.setTitle("GPS is settings")
-                    .setMessage("GPS is not enabled. Do you want to go to settings menu?");
+                .setMessage("GPS is not enabled. Do you want to go to settings menu?");
 
         // Setting Icon to Dialog
         //alertDialog.setIcon(R.drawable.delete);
 
         // On pressing Settings button
         alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog,int which) {
+            public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 mContext.startActivity(intent);
             }
@@ -118,23 +113,28 @@ public class GpsManager extends Service implements LocationListener {
         }).show();
     }
 
-    public void stopUsingGPS(){
-        if(mLocationManager != null && ContextCompat.checkSelfPermission(mContext, //checks if GPS Permission had
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+    public void stopUsingGPS() {
+        if (mLocationManager != null && ContextCompat.checkSelfPermission(mContext, //checks if GPS Permission had
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mLocationManager.removeUpdates(GpsManager.this);
         }
     }
 
-    public double getLatitute(){
-        return mLatitude;
+    public String getLatitude() {
+        return Location.convert(mLatitude,1);
     }
 
-    public double getLongitude(){
-       return mLongitude;
+    public String getLongitude() {
+        return Location.convert(mLongitude,1);
     }
 
-    public boolean canGetLocation(){
-        return mCanGetLocation;
+    public boolean canGetLocation() {
+        return mIsNetworkEnabled || mIsGpsEnabled;
+    }
+
+    public boolean haveGpsPermission(){
+        return ContextCompat.checkSelfPermission(mContext,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 
     @Nullable

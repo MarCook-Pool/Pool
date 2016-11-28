@@ -1,8 +1,9 @@
 package marcook_pool.pool_finder.fragments;
 
-import android.app.Activity;
+import android.Manifest;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import marcook_pool.pool_finder.R;
+import marcook_pool.pool_finder.managers.GpsManager;
 import marcook_pool.pool_finder.ui.PoolTable;
 
 /**
@@ -24,21 +26,24 @@ import marcook_pool.pool_finder.ui.PoolTable;
 
 public class SubmitLocationFragment extends Fragment {
 
-    Activity mActivity = getActivity();
     private DatabaseReference mDatabase;
+    private GpsManager mGpsManager;
+    private String mCoordinates; //"latitude"+' '+"longitude"
+    private int MY_PERMISSIONS_REQUEST_FINE_LOCATION;
 
-    Button mSubmitButton;
-    Button mLocationButton;
-    Button mPhotoButton;
-    EditText mEstablishment;
-    EditText mDescription;
-    RatingBar mRating;
+    private Button mSubmitButton;
+    private Button mLocationButton;
+    private Button mPhotoButton;
+    private EditText mEstablishment;
+    private EditText mDescription;
+    private RatingBar mRating;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_submit_locations, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mGpsManager = new GpsManager(getContext());
         return view;
     }
 
@@ -60,6 +65,22 @@ public class SubmitLocationFragment extends Fragment {
     }
 
     private void setClickListeners() {
+        mLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mGpsManager.canGetLocation()) { //have permission, gps on, good to go
+                    mCoordinates += mGpsManager.getLatitude();
+                    mCoordinates += mGpsManager.getLongitude();
+                } else if (mGpsManager.haveGpsPermission()) { //have permission, gps not turned on, prompt it to turn on
+                    mGpsManager.promptTurnOnGps();
+                } else { //don't have gps permission, request it
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{Manifest.permission.READ_CONTACTS},
+                            MY_PERMISSIONS_REQUEST_FINE_LOCATION);
+                }
+            }
+        });
+
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,6 +94,7 @@ public class SubmitLocationFragment extends Fragment {
                 curTable.establishment = mEstablishment.getText().toString();
                 curTable.rating = mRating.getRating();
                 curTable.photoURL = "";
+                curTable.location = mCoordinates;
 
                 mDatabase.child("Unverified Tables").child(curTable.establishment).setValue(curTable);
                 Toast.makeText(getContext(), getString(R.string.submitted_table), Toast.LENGTH_SHORT).show();

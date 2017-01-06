@@ -9,13 +9,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 /**
  * Created by Carson on 28/11/2016.
@@ -40,13 +38,13 @@ public class GpsManager extends Service implements LocationListener {
     private double mLongitude;
 
     private Context mContext;
-    private LocationManager mLocationManager;
+    private android.location.LocationManager mLocationManager;
 
     public GpsManager(Context context) {
         mContext = context;
-        mLocationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
-        mIsGpsEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        mIsNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        mLocationManager = (android.location.LocationManager) mContext.getSystemService(LOCATION_SERVICE);
+        mIsGpsEnabled = mLocationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER);
+        mIsNetworkEnabled = mLocationManager.isProviderEnabled(android.location.LocationManager.NETWORK_PROVIDER);
     }
 
     public Location getLocation() {
@@ -55,10 +53,9 @@ public class GpsManager extends Service implements LocationListener {
                 // First get location from Network Provider
                 if (mIsNetworkEnabled) {
                     mLocationManager.requestLocationUpdates
-                            (LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                    Log.d("Network", "Network");
+                            (android.location.LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
                     if (mLocationManager != null) {
-                        mLocation = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        mLocation = mLocationManager.getLastKnownLocation(android.location.LocationManager.NETWORK_PROVIDER);
                         if (mLocation != null) {
                             mLatitude = mLocation.getLatitude();
                             mLongitude = mLocation.getLongitude();
@@ -70,10 +67,9 @@ public class GpsManager extends Service implements LocationListener {
                     if (mLocation == null && ContextCompat.checkSelfPermission(mContext, //checks if GPS Permission had, if not GET IN ACTIVITY
                             Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         mLocationManager.requestLocationUpdates
-                                (LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                        Log.d("GPS Enabled", "GPS Enabled");
+                                (android.location.LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
                         if (mLocationManager != null) {
-                            mLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                            mLocation = mLocationManager.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER);
                             if (mLocation != null) {
                                 mLatitude = mLocation.getLatitude();
                                 mLongitude = mLocation.getLongitude();
@@ -119,16 +115,16 @@ public class GpsManager extends Service implements LocationListener {
         }
     }
 
-    public String getCoordinates(){
+    public String getCoordinates() {
         getLocation();
-        return "Lat: "+getLatitude()+" Long: "+getLongitude();
+        return "Lat: " + getLatitude() + " Long: " + getLongitude();
     }
 
-    public String getLatitude() {
+    private String getLatitude() {
         return Location.convert(mLatitude, 1);
     }
 
-    public String getLongitude() {
+    private String getLongitude() {
         return Location.convert(mLongitude, 1);
     }
 
@@ -139,6 +135,16 @@ public class GpsManager extends Service implements LocationListener {
     public boolean haveGpsPermission() {
         return ContextCompat.checkSelfPermission(mContext,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public float getDistance(float latA, float longA, float latB, float longB){
+        Location locationA = new Location("point A");
+        locationA.setLatitude(latA);
+        locationA.setLongitude(longA);
+        Location locationB = new Location("point B");
+        locationB.setLatitude(latB);
+        locationB.setLongitude(longB);
+        return locationA.distanceTo(locationB);
     }
 
     @Nullable

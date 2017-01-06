@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void makeTabs() {
-        //TODO: implement swipe views
         ActionBar actionBar = getSupportActionBar();
         // Specify that tabs should be displayed in the action bar.
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -152,14 +151,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search:
-                //TODO: search for pool table locations
                 return true;
             case R.id.settings:
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.review_app:
-                //TODO: send to play store or some review process
                 return true;
         }
         return super.onOptionsItemSelected(item);
